@@ -1,20 +1,27 @@
-const shipFactory = (length) => {
-  const hitPoints = [];
+/* eslint-disable guard-for-in */
+const shipFactory = (length, index) => {
+  const shipNumber = index;
+  const hitPoints = {};
   for (let i = 0; i < length; i += 1) {
-    hitPoints.push({ position: 'noHit' });
+    hitPoints[index + i] = 'noHit';
   }
-  const hit = (index) => {
-    hitPoints[index].position = 'hit';
+  const hit = (data) => {
+    hitPoints[data] = 'hit';
   };
-  const checkHit = (index) => {
-    if (index.position === 'hit') {
-      return true;
+  const isSunk = () => {
+    // eslint-disable-next-line no-restricted-syntax
+    // eslint-disable-next-line guard-for-in
+    // eslint-disable-next-line no-restricted-syntax
+    for (const property in hitPoints) {
+      if (hitPoints[property] === 'hit') {
+        return true;
+      }
+      return false;
     }
-    return false;
   };
-  const isSunk = () => hitPoints.every(checkHit);
+
   return {
-    hitPoints, hit, isSunk,
+    hitPoints, hit, isSunk, shipNumber,
   };
 };
 
