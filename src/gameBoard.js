@@ -15,23 +15,22 @@ const GameBoard = () => {
                      '', '', '', '', '', '', '', '', '', '',
                      '', '', '', '', '', '', '', '', '', '',
                      '', '', '', '', '', '', '', '', '', ''];
-
-  const placeShipHorizontal = (index, length) => {
-    const newShip = shipFactory(index, length);
+  const placeShip = (index, length, position) => {
+    const newShip = shipFactory(index, length, position);
+    if (position === 'horizontal') {
     for (let i = 0; i < newShip.shipLength; i += 1) {
       gameBoard[index + i] = index;
     }
     newShip.shipNumber = index;
     shipList.push(newShip);
-};
-    const placeShipVertical = (index, length) => {
-        const newShip = shipFactory(index, length);
-        for (let i = 0; i < newShip.shipLength * 10; i += 10) {
-          gameBoard[index + i] = index;
-        }
-        newShip.shipNumber = index;
-        shipList.push(newShip);
-    };
+  } else if (position === 'vertical') {
+    for (let i = 0; i < newShip.shipLength * 10; i += 10) {
+      gameBoard[index + i] = index;
+    }
+    newShip.shipNumber = index;
+    shipList.push(newShip);
+}
+  };
 
     const receiveAttack = (index) => {
       // si gameBoard coordinate tiene un barco,
@@ -47,9 +46,15 @@ const GameBoard = () => {
     } else {
       gameBoard[index] = 'noHit';
     }
-    };
+  };
+  const allShipsSunked = () => {
+    if (shipList.every((ship) => ship.isSunk() === true)) {
+      return true;
+    }
+    return false;
+  };
   return {
-    placeShipHorizontal, placeShipVertical, receiveAttack, gameBoard, shipList,
+    placeShip, receiveAttack, gameBoard, shipList, allShipsSunked,
   };
 };
 

@@ -4,8 +4,8 @@ const { GameBoard } = myModule;
 
 test('test', () => {
   const newBoard = GameBoard();
-  newBoard.placeShipHorizontal(0, 5);
-  newBoard.placeShipVertical(5, 5);
+  newBoard.placeShip(0, 5, 'horizontal');
+  newBoard.placeShip(5, 5, 'vertical');
   expect(newBoard.gameBoard[0]).toBe(0);
   expect(newBoard.gameBoard[1]).toBe(0);
   expect(newBoard.gameBoard[2]).toBe(0);
@@ -26,6 +26,11 @@ test('test', () => {
   newBoard.receiveAttack(2);
   newBoard.receiveAttack(3);
   newBoard.receiveAttack(4);
+  newBoard.receiveAttack(5);
+  newBoard.receiveAttack(15);
+  newBoard.receiveAttack(25);
+  newBoard.receiveAttack(35);
+  newBoard.receiveAttack(45);
   expect(newBoard.shipList[0].hitPoints[0]).toBe('hit');
   expect(newBoard.gameBoard[0]).toBe('hit');
   expect(newBoard.shipList[0].hitPoints[1]).toBe('hit');
@@ -34,9 +39,5 @@ test('test', () => {
   expect(newBoard.shipList[0].isSunk()).toBe(true);
   newBoard.receiveAttack(33);
   expect(newBoard.gameBoard[33]).toBe('noHit');
-  /*
-  newBoard.receiveAttack(1);
-  expect(newBoard.shipList[0].hitPoints[1].position).toBe('hit');
-  // newBoard.receiveAttack(45);
-  // expect(newBoard.shipList[1].hitPoints[1].position).toBe('hit'); */
+  expect(newBoard.allShipsSunked()).toBe(true);
 });
