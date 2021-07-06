@@ -4,7 +4,7 @@ import myModule from './shipFactory';
 const { shipFactory } = myModule;
 
 const GameBoard = () => {
-    const shipList = [];
+  const shipList = [];
   const gameBoard = ['', '', '', '', '', '', '', '', '', '',
                      '', '', '', '', '', '', '', '', '', '',
                      '', '', '', '', '', '', '', '', '', '',
@@ -16,20 +16,23 @@ const GameBoard = () => {
                      '', '', '', '', '', '', '', '', '', '',
                      '', '', '', '', '', '', '', '', '', ''];
 
-  const placeShipHorizontal = (index, length, data) => {
-    const newShip = shipFactory(length, data);
-    for (let i = 0; i < newShip.hitPoints.length; i += 1) {
-      gameBoard[index + i] = data;
+  const placeShipHorizontal = (index, length) => {
+    const newShip = shipFactory(index, length);
+    for (let i = 0; i < newShip.shipLength; i += 1) {
+      gameBoard[index + i] = index;
     }
+    newShip.shipNumber = index;
     shipList.push(newShip);
 };
-    const placeShipVertical = (index, length, data) => {
-        const newShip = shipFactory(length, data);
-        for (let i = 0; i < newShip.hitPoints.length * 10; i += 10) {
-          gameBoard[index + i] = data;
+    const placeShipVertical = (index, length) => {
+        const newShip = shipFactory(index, length);
+        for (let i = 0; i < newShip.shipLength * 10; i += 10) {
+          gameBoard[index + i] = index;
         }
+        newShip.shipNumber = index;
         shipList.push(newShip);
     };
+
     const receiveAttack = (index) => {
         for (let i = 0; i < shipList.length; i += 1) {
             if (shipList[i].shipNumber === gameBoard[index]) {
