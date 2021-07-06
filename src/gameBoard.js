@@ -34,11 +34,19 @@ const GameBoard = () => {
     };
 
     const receiveAttack = (index) => {
+      // si gameBoard coordinate tiene un barco,
+      // lo selecciona y resta hitpoint correspondiente
+      if (gameBoard[index] !== '') {
         for (let i = 0; i < shipList.length; i += 1) {
             if (shipList[i].shipNumber === gameBoard[index]) {
+                gameBoard[index] = 'hit';
                 shipList[i].hit(index);
-            }
         }
+      }
+      // si no hay barco, registra no hit;
+    } else {
+      gameBoard[index] = 'noHit';
+    }
     };
   return {
     placeShipHorizontal, placeShipVertical, receiveAttack, gameBoard, shipList,

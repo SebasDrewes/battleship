@@ -27,11 +27,13 @@ test('test', () => {
   newBoard.receiveAttack(3);
   newBoard.receiveAttack(4);
   expect(newBoard.shipList[0].hitPoints[0]).toBe('hit');
+  expect(newBoard.gameBoard[0]).toBe('hit');
   expect(newBoard.shipList[0].hitPoints[1]).toBe('hit');
-  expect(newBoard.shipList[0].hitPoints[2]).toBe('hit');
   expect(newBoard.shipList[0].hitPoints[3]).toBe('hit');
   expect(newBoard.shipList[0].hitPoints[4]).toBe('hit');
   expect(newBoard.shipList[0].isSunk()).toBe(true);
+  newBoard.receiveAttack(33);
+  expect(newBoard.gameBoard[33]).toBe('noHit');
   /*
   newBoard.receiveAttack(1);
   expect(newBoard.shipList[0].hitPoints[1].position).toBe('hit');
