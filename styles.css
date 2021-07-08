@@ -1,0 +1,9 @@
+#container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: auto;
+}
+.cell {
+    border: solid;
+    height: 5vh;
+}
