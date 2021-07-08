@@ -1,6 +1,7 @@
 import myModule from './player';
 
 const { player } = myModule;
+
 test('testing turn taking hitting target', () => {
   expect(player().turn).toBe('player');
   player().takeTurn(11);
