@@ -2,15 +2,17 @@ import createNewGameModule from './game';
 
 const { createNewGame } = createNewGameModule;
 const displayBoards = () => {
-  const document = createElement('document');
   const container = document.querySelector('#container');
-  const playerBoard = createNewGame().playerGameBoard.gameBoard;
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
   const createCell = (index) => {
     const cell = document.createElement('div');
     cell.textContent = index;
+    cell.classList.add('cell');
     container.appendChild(cell);
   };
-  playerBoard.forEach((index) => createCell(index));
+  createNewGame().enemyGameBoard.gameBoard.forEach((index) => createCell(index));
 };
 
 export default {

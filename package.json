@@ -1,5 +1,5 @@
 {
-  "name": "restaurant-page",
+  "name": "battleship",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SebasDrewes/restaurant-page.git"
+    "url": "git+https://github.com/SebasDrewes/battleship.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SebasDrewes/restaurant-page/issues"
+    "url": "https://github.com/SebasDrewes/battleship/issues"
   },
-  "homepage": "https://github.com/SebasDrewes/restaurant-page#readme",
+  "homepage": "https://github.com/SebasDrewes/battleship#readme",
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
