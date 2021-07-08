@@ -1,6 +1,7 @@
 import createNewGameModule from './game';
 
-const { createNewGame } = createNewGameModule;
+const { playerGameBoard } = createNewGameModule;
+const { enemyGameBoard } = createNewGameModule;
 const displayBoards = () => {
   const container = document.querySelector('#container');
   while (container.firstChild) {
@@ -12,7 +13,7 @@ const displayBoards = () => {
     cell.classList.add('cell');
     container.appendChild(cell);
   };
-  createNewGame().enemyGameBoard.gameBoard.forEach((index) => createCell(index));
+  enemyGameBoard.gameBoard.forEach((index) => createCell(index));
 };
 
 export default {

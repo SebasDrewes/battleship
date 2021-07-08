@@ -23,11 +23,6 @@ const makePlay = (index) => {
   console.log(playerGameBoard);
 };
 
-makePlay(0);
-makePlay(1);
-makePlay(2);
-makePlay(5);
-makePlay(6);
 export default {
-  makePlay,
+  makePlay, playerGameBoard, enemyGameBoard,
 };
