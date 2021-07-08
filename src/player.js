@@ -1,14 +1,14 @@
 import myModule from './gameBoard';
 // mock variables
-const { GameBoard } = myModule;
+/* const { GameBoard } = myModule;
 const playerGameBoard = GameBoard();
 const enemyGameBoard = GameBoard();
 playerGameBoard.placeShip(0, 5, 'horizontal');
-enemyGameBoard.placeShip(0, 5, 'horizontal');
+enemyGameBoard.placeShip(0, 5, 'horizontal'); */
 //
 // global para ir intercalando en takeTurn
 let turn = 'player';
-const player = (() => {
+const player = ((playerGameBoard, enemyGameBoard) => {
   const takeTurn = (index) => {
     // player play
     // si el jugador es el player, ataca enemyBoard

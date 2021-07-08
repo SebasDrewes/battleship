@@ -1,10 +1,8 @@
 import gameBoardModule from './gameBoard';
 import playerModule from './player';
-import shipModule from './shipFactory';
 
 const { GameBoard } = gameBoardModule;
 const { player } = playerModule;
-const { shipFactory } = shipModule;
 const createNewGame = (() => {
   const playerGameBoard = GameBoard();
   const enemyGameBoard = GameBoard();
@@ -19,6 +17,12 @@ const createNewGame = (() => {
   enemyGameBoard.placeShip(36, 3, 'vertical');
   playerGameBoard.placeShip(96, 2, 'horizontal');
   enemyGameBoard.placeShip(96, 2, 'horizontal');
+
+  player(playerGameBoard, enemyGameBoard).takeTurn(0);
+  player(playerGameBoard, enemyGameBoard).takeTurn(1);
+  player(playerGameBoard, enemyGameBoard).takeTurn(14);
+  player(playerGameBoard, enemyGameBoard).takeTurn(15);
+  player(playerGameBoard, enemyGameBoard).takeTurn(26);
 
   return {
     playerGameBoard, enemyGameBoard,
