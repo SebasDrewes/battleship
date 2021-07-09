@@ -1,10 +1,20 @@
+import gameBoardModule from './gameBoard';
 import displayBoardsModule from './dom';
-import playerModule from './player';
-import createNewGameModule from './game';
 
 const { displayBoards } = displayBoardsModule;
-const { player } = playerModule;
-const { createNewGame } = createNewGameModule;
-const { makePlay } = createNewGameModule;
+const { GameBoard } = gameBoardModule;
+// main game loop
+const playerGameBoard = GameBoard();
+const enemyGameBoard = GameBoard();
+playerGameBoard.placeShip(0, 5, 'horizontal');
+enemyGameBoard.placeShip(0, 5, 'horizontal');
+playerGameBoard.placeShip(10, 4, 'vertical');
+enemyGameBoard.placeShip(10, 4, 'vertical');
+playerGameBoard.placeShip(7, 3, 'horizontal');
+enemyGameBoard.placeShip(7, 3, 'horizontal');
+playerGameBoard.placeShip(36, 3, 'vertical');
+enemyGameBoard.placeShip(36, 3, 'vertical');
+playerGameBoard.placeShip(96, 2, 'horizontal');
+enemyGameBoard.placeShip(96, 2, 'horizontal');
 
-displayBoards();
+window.onload = displayBoards(playerGameBoard, enemyGameBoard);
