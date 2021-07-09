@@ -17,4 +17,4 @@ enemyGameBoard.placeShip(36, 3, 'vertical');
 playerGameBoard.placeShip(96, 2, 'horizontal');
 enemyGameBoard.placeShip(96, 2, 'horizontal');
 
-window.onload = displayBoards(playerGameBoard, enemyGameBoard);
+displayBoards(playerGameBoard, enemyGameBoard);

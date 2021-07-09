@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable guard-for-in */
 const shipFactory = (index, length, position) => {
   const hitPoints = {};
   const shipLength = length;
@@ -17,7 +15,6 @@ const shipFactory = (index, length, position) => {
   const hit = (hitpoint) => {
     hitPoints[hitpoint] = 'hit';
   };
-  // eslint-disable-next-line consistent-return
   const isSunk = () => {
     const arrayofHitPointsValues = Object.values(hitPoints);
     if (arrayofHitPointsValues.every((value) => value === 'hit')) {
