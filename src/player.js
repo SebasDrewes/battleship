@@ -3,6 +3,7 @@ const playerTurn = (playerGameBoard, enemyGameBoard, index) => {
   if (enemyGameBoard.gameBoard[index] !== 'hit' && enemyGameBoard.gameBoard[index] !== 'noHit') {
     enemyGameBoard.receiveAttack(index);
 
+    // array constituido por indexes validos
     const validArray = [];
     // loop para pushear index vacios para luego seleccionar uno random;
     for (let i = 0; i < playerGameBoard.gameBoard.length; i += 1) {

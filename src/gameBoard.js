@@ -17,7 +17,6 @@ const GameBoard = () => {
   const placeShip = (index, length, position) => {
     const newShip = shipFactory(index, length, position);
     shipList.push(newShip);
-    //  }
     if (position === 'horizontal') {
       for (let i = 0; i < newShip.shipLength; i += 1) {
         gameBoard[index + i] = index;
