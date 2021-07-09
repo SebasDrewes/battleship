@@ -19,7 +19,6 @@ enemyGameBoard.placeShip(96, 2, 'horizontal');
 
 const makePlay = (index) => {
   player(playerGameBoard, enemyGameBoard).takeTurn(index);
-  console.log(enemyGameBoard);
 };
 
 export default {

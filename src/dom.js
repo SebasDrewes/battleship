@@ -11,8 +11,6 @@ const displayBoards = () => {
   const createCell = (value, index) => {
     const cell = document.createElement('div');
     cell.textContent = value;
-    console.log(value);
-    console.log(index);
     cell.classList.add('cell');
     cell.setAttribute('data', [index]);
     container.appendChild(cell);
@@ -21,6 +19,9 @@ const displayBoards = () => {
       displayBoards();
     });
   };
+  for (let i = 0; i < playerGameBoard.gameBoard.length; i += 1) {
+    createCell(playerGameBoard.gameBoard[i], i);
+  }
   for (let i = 0; i < enemyGameBoard.gameBoard.length; i += 1) {
     createCell(enemyGameBoard.gameBoard[i], i);
   }

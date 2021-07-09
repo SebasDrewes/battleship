@@ -2,8 +2,12 @@
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: auto;
+    width: 40vw;
+    margin: 10vh;
+    margin-bottom: 10vh;
 }
 .cell {
-    border: solid;
+    border: 1px solid;
+    width: 5vw;
     height: 5vh;
 }
