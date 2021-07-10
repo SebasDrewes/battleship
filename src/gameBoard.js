@@ -15,18 +15,20 @@ const GameBoard = () => {
     '', '', '', '', '', '', '', '', '', '',
     '', '', '', '', '', '', '', '', '', ''];
   const placeShip = (index, length, position) => {
-    const newShip = shipFactory(index, length, position);
-    shipList.push(newShip);
-    if (position === 'horizontal') {
-      for (let i = 0; i < newShip.shipLength; i += 1) {
-        gameBoard[index + i] = index;
+    if (gameBoard[index] === '') {
+      const newShip = shipFactory(index, length, position);
+      shipList.push(newShip);
+      if (position === 'horizontal') {
+        for (let i = 0; i < newShip.shipLength; i += 1) {
+          gameBoard[index + i] = index;
+        }
+        newShip.shipNumber = index;
+      } else if (position === 'vertical') {
+        for (let i = 0; i < newShip.shipLength * 10; i += 10) {
+          gameBoard[index + i] = index;
+        }
+        newShip.shipNumber = index;
       }
-      newShip.shipNumber = index;
-    } else if (position === 'vertical') {
-      for (let i = 0; i < newShip.shipLength * 10; i += 10) {
-        gameBoard[index + i] = index;
-      }
-      newShip.shipNumber = index;
     }
   };
 
