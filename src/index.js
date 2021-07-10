@@ -19,4 +19,4 @@ playerGameBoard.placeShip(96, 2, 'horizontal');
 enemyGameBoard.placeShip(96, 2, 'horizontal'); */
 
 // displayBoards(playerGameBoard, enemyGameBoard);
-placeShipsBoard(playerGameBoard);
+placeShipsBoard(playerGameBoard, 8);

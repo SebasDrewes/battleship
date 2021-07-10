@@ -35,7 +35,7 @@ const changeposition = () => {
     position = 'horizontal';
   }
 };
-const placeShipsBoard = (playerGameBoard) => {
+const placeShipsBoard = (playerGameBoard, length) => {
   while (container.firstChild) {
     container.removeChild(container.firstChild);
   }
@@ -47,15 +47,16 @@ const placeShipsBoard = (playerGameBoard) => {
     container.appendChild(cell);
     // to do, cambiar 5 por length
     cell.addEventListener('click', () => {
-      playerGameBoard.placeShip(index, 5, position);
-      placeShipsBoard(playerGameBoard, position);
+      playerGameBoard.placeShip(index, length, position);
+      placeShipsBoard(playerGameBoard, length);
+      console.log(playerGameBoard);
     });
     cell.addEventListener('mouseover', () => {
       const cells = document.querySelectorAll('.cell');
       if (position === 'horizontal') {
         for (let i = 0; i < cells.length; i += 1) {
           if (cells[i].getAttribute('data') === index.toString()) {
-            for (let j = 0; j < 5; j += 1) {
+            for (let j = 0; j < length; j += 1) {
               cells[i + j].classList.add('hoverCell');
             }
           }
@@ -63,7 +64,7 @@ const placeShipsBoard = (playerGameBoard) => {
       } else {
         for (let i = 0; i < cells.length; i += 1) {
           if (cells[i].getAttribute('data') === index.toString()) {
-            for (let j = 0; j < 5 * 10; j += 10) {
+            for (let j = 0; j < length * 10; j += 10) {
               cells[i + j].classList.add('hoverCell');
             }
           }
