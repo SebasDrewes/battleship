@@ -12,3 +12,6 @@
     height: 5vh;
     cursor: pointer;
 }
+.hoverCell {
+    background: grey;
+}

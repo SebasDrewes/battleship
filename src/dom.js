@@ -45,10 +45,34 @@ const placeShipsBoard = (playerGameBoard) => {
     cell.textContent = value;
     cell.setAttribute('data', [index]);
     container.appendChild(cell);
+    // to do, cambiar 5 por length
     cell.addEventListener('click', () => {
       playerGameBoard.placeShip(index, 5, position);
       placeShipsBoard(playerGameBoard, position);
-      console.log(playerGameBoard);
+    });
+    cell.addEventListener('mouseover', () => {
+      const cells = document.querySelectorAll('.cell');
+      if (position === 'horizontal') {
+        for (let i = 0; i < cells.length; i += 1) {
+          if (cells[i].getAttribute('data') === index.toString()) {
+            for (let j = 0; j < 5; j += 1) {
+              cells[i + j].classList.add('hoverCell');
+            }
+          }
+        }
+      } else {
+        for (let i = 0; i < cells.length; i += 1) {
+          if (cells[i].getAttribute('data') === index.toString()) {
+            for (let j = 0; j < 5 * 10; j += 10) {
+              cells[i + j].classList.add('hoverCell');
+            }
+          }
+        }
+      }
+    });
+    cell.addEventListener('mouseleave', () => {
+      const cells = document.querySelectorAll('.cell');
+      cells.forEach((item) => item.classList.remove('hoverCell'));
     });
   };
   for (let i = 0; i < playerGameBoard.gameBoard.length; i += 1) {
