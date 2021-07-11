@@ -14,20 +14,38 @@ const GameBoard = () => {
     '', '', '', '', '', '', '', '', '', '',
     '', '', '', '', '', '', '', '', '', '',
     '', '', '', '', '', '', '', '', '', ''];
+  const invalidIndexArray = [];
   const placeShip = (index, length, position) => {
-    if (gameBoard[index] === '') {
-      const newShip = shipFactory(index, length, position);
-      shipList.push(newShip);
-      if (position === 'horizontal') {
-        for (let i = 0; i < newShip.shipLength; i += 1) {
-          gameBoard[index + i] = index;
+    const newIndexArray = [];
+    for (let u = index; u < index + length; u += 1) {
+      if (newIndexArray.includes(u) === false) {
+        newIndexArray.push(u);
+      }
+    }
+    function findCommonElements(arr1, arr2) {
+      return arr1.some((item) => arr2.includes(item));
+    }
+    if (findCommonElements(invalidIndexArray, newIndexArray) === false) {
+      console.log(1);
+      if (gameBoard[index] === '') {
+        const newShip = shipFactory(index, length, position);
+        shipList.push(newShip);
+        for (let j = index; j < index + length; j += 1) {
+          if (invalidIndexArray.includes(j) === false) {
+            invalidIndexArray.push(j);
+          }
         }
-        newShip.shipNumber = index;
-      } else if (position === 'vertical') {
-        for (let i = 0; i < newShip.shipLength * 10; i += 10) {
-          gameBoard[index + i] = index;
+        if (position === 'horizontal') {
+          for (let i = 0; i < newShip.shipLength; i += 1) {
+            gameBoard[index + i] = index;
+          }
+          newShip.shipNumber = index;
+        } else if (position === 'vertical') {
+          for (let i = 0; i < newShip.shipLength * 10; i += 10) {
+            gameBoard[index + i] = index;
+          }
+          newShip.shipNumber = index;
         }
-        newShip.shipNumber = index;
       }
     }
   };
