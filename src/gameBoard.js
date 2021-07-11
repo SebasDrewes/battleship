@@ -53,17 +53,20 @@ const GameBoard = () => {
         }
       }
       if (findCommonElements(invalidIndexArray, newIndexArray) === false) {
-        const newShip = shipFactory(index, length, position);
-        shipList.push(newShip);
-        for (let j = index; j < index + length * 10; j += 10) {
-          if (invalidIndexArray.includes(j) === false) {
-            invalidIndexArray.push(j);
+        // if statement para no sobrepasar maximo index de gameBoard
+        if (index + length * 10 < 110) {
+          const newShip = shipFactory(index, length, position);
+          shipList.push(newShip);
+          for (let j = index; j < index + length * 10; j += 10) {
+            if (invalidIndexArray.includes(j) === false) {
+              invalidIndexArray.push(j);
+            }
           }
+          for (let i = 0; i < newShip.shipLength * 10; i += 10) {
+            gameBoard[index + i] = index;
+          }
+          newShip.shipNumber = index;
         }
-        for (let i = 0; i < newShip.shipLength * 10; i += 10) {
-          gameBoard[index + i] = index;
-        }
-        newShip.shipNumber = index;
       }
     }
   };
