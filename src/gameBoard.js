@@ -20,8 +20,6 @@ const GameBoard = () => {
   const invalidIndexArray = [10, 21, 32, 43, 54, 65, 76, 87, 98, 109];
   const placeShip = (index, length, position) => {
     // guarda los nuevos indexs seleccionados
-    console.log(index);
-    console.log(index + length);
     const newIndexArray = [];
     // si los nuevos indexs estan en los invalid, no ejecuta placeship
     function findCommonElements(arr1, arr2) {

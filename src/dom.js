@@ -48,10 +48,10 @@ const placeShipsBoard = (playerGameBoard, length) => {
     cell.setAttribute('data', [index]);
     cell.classList.add('cellHidden');
     cell.classList.add('cell');
+    cell.textContent = value;
     container.appendChild(cell);
     if (invalidIndexArray.includes(index) === false) {
       cell.classList.remove('cellHidden');
-      cell.textContent = value;
       cell.addEventListener('click', () => {
         playerGameBoard.placeShip(index, length, position);
         placeShipsBoard(playerGameBoard, length);
@@ -69,8 +69,14 @@ const placeShipsBoard = (playerGameBoard, length) => {
                 if (newIndexArray.includes(i + j) === false) {
                   newIndexArray.push(i + j);
                 }
-                if (findCommonElements(invalidIndexArray, newIndexArray) === false) {
-                  cells[i + j].classList.add('hoverCell');
+              }
+              for (let y = 0; y < length; y += 1) {
+                const validHover = newIndexArray.every((item) => cells[item].textContent === '');
+                console.log(newIndexArray);
+                console.log(validHover);
+                if (findCommonElements(invalidIndexArray, newIndexArray) === false
+                  && validHover) {
+                  cells[i + y].classList.add('hoverCell');
                 }
               }
             }
