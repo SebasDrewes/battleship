@@ -4,6 +4,8 @@ const { shipFactory } = shipModule;
 
 const GameBoard = () => {
   const shipList = [];
+  // al gameboard se le agrego una fila 11, para cortar posibilidad
+  // de colocar ships fuera de una unica fila horizontal
   const gameBoard = ['', '', '', '', '', '', '', '', '', '',
     '10', '', '', '', '', '', '', '', '', '',
     '', '21', '', '', '', '', '', '', '', '',
@@ -35,8 +37,8 @@ const GameBoard = () => {
       }
       // check si nuevos index son validos
       if (findCommonElements(invalidIndexArray, newIndexArray) === false) {
-        // if statement para agregar numero mayor a index
-        if (index + length < 200) {
+        // if statement para no sobrepasar maximo index de gameBoard
+        if (index + length < 120) {
           const newShip = shipFactory(index, length, position);
           shipList.push(newShip);
           for (let j = index; j < index + length; j += 1) {
@@ -49,6 +51,7 @@ const GameBoard = () => {
           }
           newShip.shipNumber = index;
         }
+        console.log(shipList);
       }
     } else if (position === 'vertical') {
       // si la position es vertical, la cuenta del for loop es diferente
