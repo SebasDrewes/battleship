@@ -1,23 +1,39 @@
+body {
+    background-color:rgb(235, 235, 235);
+}
 #container {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: auto;
-    width: 70vw;
-    margin: 10vh;
+    width: 30vw;
+    height: 50vh;
+    margin: 5vh;
     margin-bottom: 10vh;
+    border: solid 10px;
+    border-color: lightgrey;
+    border-style: outset;
 }
 .cell {
-    border: 1px solid;
-    width: 7vw;
-    height: 7vh;
+    border: 1px solid rgb(53, 116, 34);
+    width: auto;
+    height: auto;
     cursor: pointer;
+    transition: background-color 0.5s ease-in-out;
+    background-color:#004800;
 }
 .cellHidden {
     display: none;
 }
 .hoverCell {
-    background: rgba(18, 255, 37, 0.562);
+    background-color: #19a819;
 }
 .invalidCell {
     cursor:not-allowed;
+}
+.cellShip {
+    background-color: #19a819;
+    transition: background-color 0.5s ease-in-out;
+    color: transparent;
+    font-size: 0.1px;
+    user-select: none;
 }
