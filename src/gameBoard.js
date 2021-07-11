@@ -61,7 +61,7 @@ const GameBoard = () => {
       }
       if (findCommonElements(invalidIndexArray, newIndexArray) === false) {
         // if statement para no sobrepasar maximo index de gameBoard
-        if (index + length * 11 < 110) {
+        if (index + length * 11 < 120) {
           const newShip = shipFactory(index, length, position);
           shipList.push(newShip);
           for (let j = index; j < index + length * 11; j += 11) {

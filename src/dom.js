@@ -78,7 +78,7 @@ const placeShipsBoard = (playerGameBoard, length) => {
         } else {
           for (let i = 0; i < cells.length; i += 1) {
             if (cells[i].getAttribute('data') === index.toString()) {
-              for (let j = 0; j < length * 10; j += 10) {
+              for (let j = 0; j < length * 11; j += 11) {
                 if (cells[i + j]) {
                   cells[i + j].classList.add('hoverCell');
                 }
