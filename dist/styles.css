@@ -16,5 +16,8 @@
     display: none;
 }
 .hoverCell {
-    background: grey;
+    background: rgba(18, 255, 37, 0.562);
+}
+.invalidCell {
+    cursor:not-allowed;
 }

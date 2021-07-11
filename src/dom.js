@@ -61,8 +61,8 @@ const placeShipsBoard = (playerGameBoard, length) => {
       });
       cell.addEventListener('mouseover', () => {
         const cells = document.querySelectorAll('.cell');
+        const newIndexArray = [];
         if (position === 'horizontal') {
-          const newIndexArray = [];
           for (let i = 0; i < cells.length; i += 1) {
             if (cells[i].getAttribute('data') === index.toString()) {
               for (let j = 0; j < length; j += 1) {
@@ -71,12 +71,16 @@ const placeShipsBoard = (playerGameBoard, length) => {
                 }
               }
               for (let y = 0; y < length; y += 1) {
-                const validHover = newIndexArray.every((item) => cells[item].textContent === '');
+                const validHover = newIndexArray.every((item) => cells[item] !== undefined && cells[item].textContent === '');
                 console.log(newIndexArray);
                 console.log(validHover);
                 if (findCommonElements(invalidIndexArray, newIndexArray) === false
                   && validHover) {
-                  cells[i + y].classList.add('hoverCell');
+                  if (cells[i + y]) {
+                    cells[i + y].classList.add('hoverCell');
+                  }
+                } else {
+                  cells[i].classList.add('invalidCell');
                 }
               }
             }
@@ -85,17 +89,32 @@ const placeShipsBoard = (playerGameBoard, length) => {
           for (let i = 0; i < cells.length; i += 1) {
             if (cells[i].getAttribute('data') === index.toString()) {
               for (let j = 0; j < length * 11; j += 11) {
-                if (cells[i + j]) {
-                  cells[i + j].classList.add('hoverCell');
+                if (newIndexArray.includes(i + j) === false) {
+                  newIndexArray.push(i + j);
+                }
+              }
+              for (let y = 0; y < length * 11; y += 11) {
+                const validHover = newIndexArray.every((item) => cells[item] !== undefined && cells[item].textContent === '');
+                console.log(newIndexArray);
+                console.log(validHover);
+                if (findCommonElements(invalidIndexArray, newIndexArray) === false
+                && validHover) {
+                  if (cells[i + y]) {
+                    cells[i + y].classList.add('hoverCell');
+                  }
+                } else {
+                  cells[i].classList.add('invalidCell');
                 }
               }
             }
           }
         }
       });
+
       cell.addEventListener('mouseleave', () => {
         const cells = document.querySelectorAll('.cell');
         cells.forEach((item) => item.classList.remove('hoverCell'));
+        cells.forEach((item) => item.classList.remove('invalidCell'));
       });
     }
   };
