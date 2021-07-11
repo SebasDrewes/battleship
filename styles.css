@@ -12,6 +12,9 @@
     height: 7vh;
     cursor: pointer;
 }
+.cellHidden {
+    display: none;
+}
 .hoverCell {
     background: grey;
 }
