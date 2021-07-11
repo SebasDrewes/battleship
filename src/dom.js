@@ -41,44 +41,57 @@ const placeShipsBoard = (playerGameBoard, length) => {
   }
   const createCell = (value, index) => {
     const cell = document.createElement('div');
-    cell.classList.add('cell');
-    cell.textContent = value;
+    const invalidIndexArray = [10, 21, 32, 43, 54, 65, 76, 87, 98, 109];
+    function findCommonElements(arr1, arr2) {
+      return arr1.some((item) => arr2.includes(item));
+    }
     cell.setAttribute('data', [index]);
+    cell.classList.add('cellHidden');
+    cell.classList.add('cell');
     container.appendChild(cell);
-    // to do, cambiar 5 por length
-    cell.addEventListener('click', () => {
-      playerGameBoard.placeShip(index, length, position);
-      placeShipsBoard(playerGameBoard, length);
-      console.log(playerGameBoard);
-    });
-    cell.addEventListener('mouseover', () => {
-      const cells = document.querySelectorAll('.cell');
-      if (position === 'horizontal') {
-        for (let i = 0; i < cells.length; i += 1) {
-          if (cells[i].getAttribute('data') === index.toString()) {
-            for (let j = 0; j < length; j += 1) {
-              if (cells[i + j]) {
-                cells[i + j].classList.add('hoverCell');
+    if (invalidIndexArray.includes(index) === false) {
+      cell.classList.remove('cellHidden');
+      cell.textContent = value;
+      cell.addEventListener('click', () => {
+        playerGameBoard.placeShip(index, length, position);
+        placeShipsBoard(playerGameBoard, length);
+        for (let i = index; i < index + length; i += 1) {
+          invalidIndexArray.push(i);
+        }
+      });
+      cell.addEventListener('mouseover', () => {
+        const cells = document.querySelectorAll('.cell');
+        if (position === 'horizontal') {
+          const newIndexArray = [];
+          for (let i = 0; i < cells.length; i += 1) {
+            if (cells[i].getAttribute('data') === index.toString()) {
+              for (let j = 0; j < length; j += 1) {
+                if (newIndexArray.includes(i + j) === false) {
+                  newIndexArray.push(i + j);
+                }
+                if (findCommonElements(invalidIndexArray, newIndexArray) === false) {
+                  cells[i + j].classList.add('hoverCell');
+                }
+              }
+            }
+          }
+        } else {
+          for (let i = 0; i < cells.length; i += 1) {
+            if (cells[i].getAttribute('data') === index.toString()) {
+              for (let j = 0; j < length * 10; j += 10) {
+                if (cells[i + j]) {
+                  cells[i + j].classList.add('hoverCell');
+                }
               }
             }
           }
         }
-      } else {
-        for (let i = 0; i < cells.length; i += 1) {
-          if (cells[i].getAttribute('data') === index.toString()) {
-            for (let j = 0; j < length * 10; j += 10) {
-              if (cells[i + j]) {
-                cells[i + j].classList.add('hoverCell');
-              }
-            }
-          }
-        }
-      }
-    });
-    cell.addEventListener('mouseleave', () => {
-      const cells = document.querySelectorAll('.cell');
-      cells.forEach((item) => item.classList.remove('hoverCell'));
-    });
+      });
+      cell.addEventListener('mouseleave', () => {
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach((item) => item.classList.remove('hoverCell'));
+      });
+    }
   };
   for (let i = 0; i < playerGameBoard.gameBoard.length; i += 1) {
     createCell(playerGameBoard.gameBoard[i], i);

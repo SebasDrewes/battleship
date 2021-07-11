@@ -5,17 +5,19 @@ const { shipFactory } = shipModule;
 const GameBoard = () => {
   const shipList = [];
   const gameBoard = ['', '', '', '', '', '', '', '', '', '',
-    '', '', '', '', '', '', '', '', '', '',
-    '', '', '', '', '', '', '', '', '', '',
-    '', '', '', '', '', '', '', '', '', '',
-    '', '', '', '', '', '', '', '', '', '',
-    '', '', '', '', '', '', '', '', '', '',
-    '', '', '', '', '', '', '', '', '', '',
-    '', '', '', '', '', '', '', '', '', '',
-    '', '', '', '', '', '', '', '', '', '',
-    '', '', '', '', '', '', '', '', '', ''];
+    '10', '', '', '', '', '', '', '', '', '',
+    '', '21', '', '', '', '', '', '', '', '',
+    '', '', '32', '', '', '', '', '', '', '',
+    '', '', '', '43', '', '', '', '', '', '',
+    '', '', '', '', '54', '', '', '', '', '',
+    '', '', '', '', '', '65', '', '', '', '',
+    '', '', '', '', '', '', '76', '', '', '',
+    '', '', '', '', '', '', '', '87', '', '',
+    '', '', '', '', '', '', '', '', '98', '',
+    '', '', '', '', '', '', '', '', '', '109'];
   // cuando un index del gameBoard se ocupa, se agrega a invalidIndex
-  const invalidIndexArray = [];
+  // se agregan index numero 11, para inhabilitar posicionar barcos horizontal
+  const invalidIndexArray = [10, 21, 32, 43, 54, 65, 76, 87, 98, 109];
   const placeShip = (index, length, position) => {
     // guarda los nuevos indexs seleccionados
     console.log(index);
@@ -36,7 +38,7 @@ const GameBoard = () => {
       // check si nuevos index son validos
       if (findCommonElements(invalidIndexArray, newIndexArray) === false) {
         // if statement para agregar numero mayor a index
-        if (index + length < 100) {
+        if (index + length < 200) {
           const newShip = shipFactory(index, length, position);
           shipList.push(newShip);
           for (let j = index; j < index + length; j += 1) {
@@ -52,22 +54,22 @@ const GameBoard = () => {
       }
     } else if (position === 'vertical') {
       // si la position es vertical, la cuenta del for loop es diferente
-      for (let u = index; u < index + length * 10; u += 10) {
+      for (let u = index; u < index + length * 11; u += 11) {
         if (newIndexArray.includes(u) === false) {
           newIndexArray.push(u);
         }
       }
       if (findCommonElements(invalidIndexArray, newIndexArray) === false) {
         // if statement para no sobrepasar maximo index de gameBoard
-        if (index + length * 10 < 110) {
+        if (index + length * 11 < 110) {
           const newShip = shipFactory(index, length, position);
           shipList.push(newShip);
-          for (let j = index; j < index + length * 10; j += 10) {
+          for (let j = index; j < index + length * 11; j += 11) {
             if (invalidIndexArray.includes(j) === false) {
               invalidIndexArray.push(j);
             }
           }
-          for (let i = 0; i < newShip.shipLength * 10; i += 10) {
+          for (let i = 0; i < newShip.shipLength * 11; i += 11) {
             gameBoard[index + i] = index;
           }
           newShip.shipNumber = index;
