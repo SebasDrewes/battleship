@@ -1,8 +1,30 @@
 body {
-    background-color:rgb(235, 235, 235);
+    min-height: 100%;
+    margin: 0;
+    background-color: #000000;
+    background-image: linear-gradient(315deg, #000000 0%, #7f8c8d 74%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 #container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#playerBoard {
     display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: auto;
+    width: 30vw;
+    height: 50vh;
+    margin: 5vh;
+    margin-bottom: 10vh;
+
+    border-color: rgba(255, 255, 255, 0.25);
+    border-style: inset;
+}
+#enemyBoard {
+    display: none;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: auto;
     width: 30vw;
@@ -14,26 +36,40 @@ body {
     border-style: outset;
 }
 .cell {
-    border: 1px solid rgb(53, 116, 34);
+    border: 1px solid rgba(53, 116, 34, 0.5);
     width: auto;
     height: auto;
     cursor: pointer;
     transition: background-color 0.5s ease-in-out;
-    background-color:#004800;
+    background-color:#00480080;
 }
 .cellHidden {
     display: none;
 }
 .hoverCell {
-    background-color: #19a819;
+    background-color: #19a8198a;
 }
 .invalidCell {
     cursor:not-allowed;
 }
 .cellShip {
-    background-color: #19a819;
+    background-color: #19a8198a;
     transition: background-color 0.5s ease-in-out;
     color: transparent;
     font-size: 0.1px;
     user-select: none;
+}
+.cellHittable {
+    border: 1px solid rgb(53, 116, 34);
+    width: auto;
+    height: auto;
+    cursor: crosshair;
+    background-color:#004800;
+}
+.cellFrendly {
+    border: 1px solid rgb(53, 116, 34);
+    width: auto;
+    height: auto;
+    cursor: default;
+    background-color:#004800;
 }
