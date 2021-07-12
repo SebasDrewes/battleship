@@ -1,23 +1,43 @@
 import playerModule from './player';
 
 const { playerTurn } = playerModule;
-const container = document.querySelector('#container');
+const playerBoard = document.querySelector('#playerBoard');
+const enemyBoard = document.querySelector('#enemyBoard');
+// funcion para comprar newIndexs con indexInvalidos
+function findCommonElements(arr1, arr2) {
+  return arr1.some((item) => arr2.includes(item));
+}
 
 const displayBoards = (playerGameBoard, enemyGameBoard) => {
-  while (container.firstChild) {
-    container.removeChild(container.firstChild);
+  enemyBoard.style.display = 'grid';
+  while (playerBoard.firstChild) {
+    playerBoard.removeChild(playerBoard.firstChild);
+  }
+  while (enemyBoard.firstChild) {
+    enemyBoard.removeChild(enemyBoard.firstChild);
   }
   const createCell = (value, index, enableClick) => {
+    const invalidIndexArray = [10, 21, 32, 43, 54, 65, 76, 87, 98, 109];
     const cell = document.createElement('div');
     cell.textContent = value;
-    cell.classList.add('cell');
+    cell.classList.add('cellHittable');
+    cell.classList.add('cellHidden');
     cell.setAttribute('data', [index]);
-    container.appendChild(cell);
-    if (enableClick) {
-      cell.addEventListener('click', () => {
-        playerTurn(playerGameBoard, enemyGameBoard, index);
-        displayBoards(playerGameBoard, enemyGameBoard);
-      });
+    if (invalidIndexArray.includes(index) === false) {
+      // si la celda es valida, se borra hidden
+      // y se agrega eventListener
+      cell.classList.remove('cellHidden');
+      if (enableClick) {
+        enemyBoard.appendChild(cell);
+        cell.addEventListener('click', () => {
+          playerTurn(playerGameBoard, enemyGameBoard, index);
+          displayBoards(playerGameBoard, enemyGameBoard);
+        });
+      } else {
+        playerBoard.appendChild(cell);
+        cell.classList.remove('cellHittable');
+        cell.classList.add('cellFrendly');
+      }
     }
   };
   for (let i = 0; i < playerGameBoard.gameBoard.length; i += 1) {
@@ -38,24 +58,20 @@ const changeposition = () => {
     position = 'horizontal';
   }
 };
-const placeShipsBoard = (playerGameBoard, length) => {
+const placeShipsBoard = (playerGameBoard, enemyGameBoard, length) => {
   // si existen, se borran todas las celdas
-  while (container.firstChild) {
-    container.removeChild(container.firstChild);
+  while (playerBoard.firstChild) {
+    playerBoard.removeChild(playerBoard.firstChild);
   }
   const createCell = (value, index) => {
     const cell = document.createElement('div');
     // array con index invalidos/invisibles para cortar horizontal
     const invalidIndexArray = [10, 21, 32, 43, 54, 65, 76, 87, 98, 109];
-    // funcion para comprar newIndexs con indexInvalidos
-    function findCommonElements(arr1, arr2) {
-      return arr1.some((item) => arr2.includes(item));
-    }
     cell.setAttribute('data', [index]);
     cell.classList.add('cellHidden');
     cell.classList.add('cell');
     cell.textContent = value;
-    container.appendChild(cell);
+    playerBoard.appendChild(cell);
     if (invalidIndexArray.includes(index) === false) {
       // si la celda es valida, se borra hidden
       // y se agrega eventListener
@@ -63,7 +79,27 @@ const placeShipsBoard = (playerGameBoard, length) => {
       cell.addEventListener('click', () => {
         // al hacer click, se inserta ship en los index correspondientes
         playerGameBoard.placeShip(index, length, position);
-        placeShipsBoard(playerGameBoard, length);
+        // una vez colocado barco correctamente,
+        // llama la funcion nuevamente, con length segun cantidad de barcos;
+        switch (playerGameBoard.shipList.length) {
+          case 1:
+            placeShipsBoard(playerGameBoard, enemyGameBoard, 4);
+            break;
+          case 2:
+            placeShipsBoard(playerGameBoard, enemyGameBoard, 3);
+            break;
+          case 3:
+            placeShipsBoard(playerGameBoard, enemyGameBoard, 3);
+            break;
+          case 4:
+            placeShipsBoard(playerGameBoard, enemyGameBoard, 2);
+            break;
+          case 5:
+            displayBoards(playerGameBoard, enemyGameBoard);
+            break;
+          default:
+            placeShipsBoard(playerGameBoard, enemyGameBoard, 4);
+        }
         // se agregan indexs usados al array de invalid
         for (let i = index; i < index + length; i += 1) {
           invalidIndexArray.push(i);
