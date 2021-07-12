@@ -1,10 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text&display=swap');
+
 body {
     min-height: 100%;
     margin: 0;
-    background-color: #000000;
-    background-image: linear-gradient(315deg, #000000 0%, #7f8c8d 74%);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: linear-gradient(90deg,rgba(21, 32, 34, 0.6),rgba(129, 129, 129, 0.6)),url('img/fondo.png');
+    background-repeat: repeat;
+}
+#title {
+    font-family: 'Big Shoulders Stencil Text', cursive;
+    font-size: 5em;
+    color: #eeebeb;
+    text-align: center;
 }
 #container {
     display: flex;
@@ -19,7 +25,6 @@ body {
     height: 50vh;
     margin: 5vh;
     margin-bottom: 10vh;
-
     border-color: rgba(255, 255, 255, 0.25);
     border-style: inset;
 }
@@ -31,45 +36,44 @@ body {
     height: 50vh;
     margin: 5vh;
     margin-bottom: 10vh;
-    border: solid 10px;
-    border-color: lightgrey;
-    border-style: outset;
+    border-color: rgba(255, 255, 255, 0.25);
+    border-style: inset;
 }
 .cell {
-    border: 1px solid rgba(53, 116, 34, 0.5);
+    border: 1px solid rgba(53, 116, 34, 0.8);
     width: auto;
     height: auto;
     cursor: pointer;
     transition: background-color 0.5s ease-in-out;
-    background-color:#00480080;
+    background-color:#004800b6;
 }
 .cellHidden {
     display: none;
 }
 .hoverCell {
-    background-color: #19a8198a;
+    background-color: #19a819cc;
 }
 .invalidCell {
     cursor:not-allowed;
 }
 .cellShip {
-    background-color: #19a8198a;
+    background-color: #19a819cc;
     transition: background-color 0.5s ease-in-out;
     color: transparent;
     font-size: 0.1px;
     user-select: none;
 }
 .cellHittable {
-    border: 1px solid rgb(53, 116, 34);
+    border: 1px solid rgba(53, 116, 34, 0.8);
     width: auto;
     height: auto;
     cursor: crosshair;
-    background-color:#004800;
+    background-color:#004800b6;
 }
 .cellFrendly {
-    border: 1px solid rgb(53, 116, 34);
+    border: 1px solid rgba(53, 116, 34, 0.8);
     width: auto;
     height: auto;
     cursor: default;
-    background-color:#004800;
+    background-color:#004800b6;
 }
