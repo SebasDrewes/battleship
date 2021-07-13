@@ -10,7 +10,6 @@ function findCommonElements(arr1, arr2) {
 }
 
 const displayBoards = (playerGameBoard, enemyGameBoard) => {
-  text.textContent = '';
   enemyBoard.style.display = 'grid';
   while (playerBoard.firstChild) {
     playerBoard.removeChild(playerBoard.firstChild);
@@ -34,6 +33,11 @@ const displayBoards = (playerGameBoard, enemyGameBoard) => {
         cell.addEventListener('click', () => {
           playerTurn(playerGameBoard, enemyGameBoard, index);
           displayBoards(playerGameBoard, enemyGameBoard);
+          if (cell.textContent.match(/^[0-9]+$/) !== null) {
+            text.textContent = '¡Le diste a un barco enemigo!';
+          } else if (cell.textContent === '') {
+            text.textContent = '¡Fallaste el tiro!'; q;
+          }
         });
         cell.addEventListener('mouseover', () => {
           cell.classList.add('hoverCell');
