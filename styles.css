@@ -83,10 +83,12 @@ body {
     display: none;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: auto;
-    width: 30vw;
-    height: 50vh;
-    margin: 5vh;
-    margin-bottom: 10vh;
+    width: 34vw;
+    height: 54vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
     border-color: rgba(255, 255, 255, 0.25);
     border-style: inset;
 }
@@ -102,13 +104,44 @@ body {
     display: none;
 }
 .hoverCell {
-    background-color: #19a819cc;
+    background-color: #19a819cc !important;
 }
 .invalidCell {
     cursor:not-allowed;
 }
 .cellShip {
-    background-color: #19a819cc;
+    background-color: #19a819cc !important;
+    transition: background-color 0.5s ease-in-out;
+    color: transparent;
+    font-size: 0.1px;
+    user-select: none;
+}
+.cellShipHitted {
+    background-color: #a81919cc !important;
+    transition: background-color 0.5s ease-in-out;
+    color: transparent;
+    font-size: 0.1px;
+    user-select: none;  
+    cursor:not-allowed !important; 
+}
+.cellShipHittedFriendly {
+    background-color: #a81919cc !important;
+    transition: background-color 0.5s ease-in-out;
+    color: transparent;
+    font-size: 0.1px;
+    user-select: none;  
+    cursor:not-allowed !important; 
+}
+.cellMiss {
+    background-color: #19a8a8cc !important;
+    transition: background-color 0.5s ease-in-out;
+    color: transparent;
+    font-size: 0.1px;
+    user-select: none;
+    cursor:not-allowed !important; 
+}
+.cellMissFriendly {
+    background-color: #19a8a8cc !important;
     transition: background-color 0.5s ease-in-out;
     color: transparent;
     font-size: 0.1px;
@@ -120,14 +153,23 @@ body {
     height: auto;
     cursor: crosshair;
     background-color:#004800b6;
+    transition: background-color 0.5s ease-in-out;
+    color: transparent;
+    font-size: 0.1px;
+    user-select: none;
 }
-.cellFrendly {
+.cellFriendly {
     border: 1px solid rgba(53, 116, 34, 0.8);
     width: auto;
     height: auto;
     cursor: default;
     background-color:#004800b6;
+    transition: background-color 0.5s ease-in-out;
+    color: transparent;
+    font-size: 0.1px;
+    user-select: none;
 }
+
 #footer {
     display: flex;
     height: 6vh;
