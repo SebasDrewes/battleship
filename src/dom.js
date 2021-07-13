@@ -3,13 +3,18 @@ import playerModule from './player';
 const { playerTurn } = playerModule;
 const playerBoard = document.querySelector('#playerBoard');
 const enemyBoard = document.querySelector('#enemyBoard');
+const tuRadar = document.querySelector('#tuRadar');
+const enemyRadar = document.querySelector('#enemyRadar');
 const text = document.querySelector('#text');
+const change = document.querySelector('#change');
+const title = document.querySelector('#title');
 // funcion para comprar newIndexs con indexInvalidos
 function findCommonElements(arr1, arr2) {
   return arr1.some((item) => arr2.includes(item));
 }
 
 const displayBoards = (playerGameBoard, enemyGameBoard) => {
+  change.style.display = 'none';
   enemyBoard.style.display = 'grid';
   while (playerBoard.firstChild) {
     playerBoard.removeChild(playerBoard.firstChild);
@@ -34,9 +39,9 @@ const displayBoards = (playerGameBoard, enemyGameBoard) => {
           playerTurn(playerGameBoard, enemyGameBoard, index);
           displayBoards(playerGameBoard, enemyGameBoard);
           if (cell.textContent.match(/^[0-9]+$/) !== null) {
-            text.textContent = '¡Le diste a un barco enemigo!';
+            title.textContent = '¡Le diste a un barco enemigo!';
           } else if (cell.textContent === '') {
-            text.textContent = '¡Fallaste el tiro!'; q;
+            title.textContent = '¡Fallaste el tiro!';
           }
         });
         cell.addEventListener('mouseover', () => {
@@ -120,6 +125,10 @@ const placeShipsBoard = (playerGameBoard, enemyGameBoard, length) => {
             break;
           case 5:
             displayBoards(playerGameBoard, enemyGameBoard);
+            title.textContent = 'Esperando instrucciones...';
+            text.style.display = 'none';
+            tuRadar.style.display = 'block';
+            enemyRadar.style.display = 'block';
             break;
           default:
             placeShipsBoard(playerGameBoard, enemyGameBoard, 4);
@@ -205,7 +214,6 @@ const placeShipsBoard = (playerGameBoard, enemyGameBoard, length) => {
   }
 };
 // funcion swap position
-const change = document.querySelector('#change');
 change.addEventListener('click', changeposition);
 // footerGitHub
 const github = document.querySelector('#github');
