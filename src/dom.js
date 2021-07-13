@@ -153,7 +153,6 @@ const placeShipsBoard = (playerGameBoard, enemyGameBoard, length) => {
             title.textContent = 'Esperando instrucciones...';
             text.style.display = 'none';
             mediaFunction(windowMedia);
-            windowMedia.addEventListener(mediaFunction);
             break;
           default:
             placeShipsBoard(playerGameBoard, enemyGameBoard, 4);

@@ -7,16 +7,16 @@ const GameBoard = () => {
   // al gameboard se le agrego una fila 11, para cortar posibilidad
   // de colocar ships fuera de una unica fila horizontal
   const gameBoard = ['', '', '', '', '', '', '', '', '', '',
-    '10', '', '', '', '', '', '', '', '', '',
-    '', '21', '', '', '', '', '', '', '', '',
-    '', '', '32', '', '', '', '', '', '', '',
-    '', '', '', '43', '', '', '', '', '', '',
-    '', '', '', '', '54', '', '', '', '', '',
-    '', '', '', '', '', '65', '', '', '', '',
-    '', '', '', '', '', '', '76', '', '', '',
-    '', '', '', '', '', '', '', '87', '', '',
-    '', '', '', '', '', '', '', '', '98', '',
-    '', '', '', '', '', '', '', '', '', '109'];
+    10, '', '', '', '', '', '', '', '', '',
+    '', 21, '', '', '', '', '', '', '', '',
+    '', '', 32, '', '', '', '', '', '', '',
+    '', '', '', 43, '', '', '', '', '', '',
+    '', '', '', '', 54, '', '', '', '', '',
+    '', '', '', '', '', 65, '', '', '', '',
+    '', '', '', '', '', '', 76, '', '', '',
+    '', '', '', '', '', '', '', 87, '', '',
+    '', '', '', '', '', '', '', '', 98, '',
+    '', '', '', '', '', '', '', '', '', 109];
   // cuando un index del gameBoard se ocupa, se agrega a invalidIndex
   // se agregan index numero 11, para inhabilitar posicionar barcos horizontal
   const invalidIndexArray = [10, 21, 32, 43, 54, 65, 76, 87, 98, 109];
@@ -37,7 +37,7 @@ const GameBoard = () => {
       }
       // check si nuevos index son validos
       if (findCommonElements(invalidIndexArray, newIndexArray) === false) {
-        // if statement para no sobrepasar maximo index de gameBoard
+        // if statement para agregar numero mayor a index
         if (index + length < 120) {
           const newShip = shipFactory(index, length, position);
           shipList.push(newShip);
