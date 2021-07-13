@@ -183,6 +183,10 @@ const placeShipsBoard = (playerGameBoard, enemyGameBoard, length) => {
 // funcion swap position
 const change = document.querySelector('#change');
 change.addEventListener('click', changeposition);
+const github = document.querySelector('#github');
+github.addEventListener('click', () => {
+  window.open('https://github.com/SebasDrewes/', '_blank');
+});
 export default {
   displayBoards, placeShipsBoard,
 };
