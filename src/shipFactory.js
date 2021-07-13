@@ -8,7 +8,7 @@ const shipFactory = (index, length, position) => {
       hitPoints[index + i] = 'noHit';
     }
   } else if (shipPosition === 'vertical') {
-    for (let i = 0; i < length * 10; i += 10) {
+    for (let i = 0; i < length * 11; i += 11) {
       hitPoints[index + i] = 'noHit';
     }
   }

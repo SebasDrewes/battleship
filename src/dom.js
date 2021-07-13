@@ -39,7 +39,18 @@ const displayBoards = (playerGameBoard, enemyGameBoard) => {
           playerTurn(playerGameBoard, enemyGameBoard, index);
           displayBoards(playerGameBoard, enemyGameBoard);
           if (cell.textContent.match(/^[0-9]+$/) !== null) {
-            title.textContent = '¡Le diste a un barco enemigo!';
+            for (let i = 0; i < enemyGameBoard.shipList.length; i += 1) {
+              if (cell.textContent === enemyGameBoard.shipList[i].shipNumber.toString()
+              && enemyGameBoard.shipList[i].isSunk() === true) {
+                console.log(enemyGameBoard.shipList[i].isSunk());
+                console.log(enemyGameBoard.shipList);
+                title.textContent = '¡Hundiste un barco enemigo!';
+                break;
+              } else {
+                console.log(enemyGameBoard.shipList[i].isSunk());
+                title.textContent = '¡Le diste a un barco enemigo!';
+              }
+            }
           } else if (cell.textContent === '') {
             title.textContent = '¡Fallaste el tiro!';
           }
