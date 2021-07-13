@@ -130,7 +130,6 @@ body {
     color: transparent;
     font-size: 0.1px;
     user-select: none;  
-    cursor:not-allowed !important; 
 }
 .cellMiss {
     background-color: #19a8a8cc !important;

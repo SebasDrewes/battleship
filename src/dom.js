@@ -53,9 +53,9 @@ const displayBoards = (playerGameBoard, enemyGameBoard) => {
         if (cell.textContent.match(/^[0-9]+$/) !== null) {
           cell.classList.add('cellShip');
         } else if (cell.textContent === 'hit') {
-          cell.classList.add('cellShipHitted');
+          cell.classList.add('cellShipHittedFriendly');
         } else if (cell.textContent === 'noHit') {
-          cell.classList.add('cellMiss');
+          cell.classList.add('cellMissFriendly');
         }
       }
     }
