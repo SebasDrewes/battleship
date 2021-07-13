@@ -3,12 +3,14 @@ import playerModule from './player';
 const { playerTurn } = playerModule;
 const playerBoard = document.querySelector('#playerBoard');
 const enemyBoard = document.querySelector('#enemyBoard');
+const text = document.querySelector('#text');
 // funcion para comprar newIndexs con indexInvalidos
 function findCommonElements(arr1, arr2) {
   return arr1.some((item) => arr2.includes(item));
 }
 
 const displayBoards = (playerGameBoard, enemyGameBoard) => {
+  text.textContent = '';
   enemyBoard.style.display = 'grid';
   while (playerBoard.firstChild) {
     playerBoard.removeChild(playerBoard.firstChild);
@@ -33,10 +35,28 @@ const displayBoards = (playerGameBoard, enemyGameBoard) => {
           playerTurn(playerGameBoard, enemyGameBoard, index);
           displayBoards(playerGameBoard, enemyGameBoard);
         });
+        cell.addEventListener('mouseover', () => {
+          cell.classList.add('hoverCell');
+        });
+        cell.addEventListener('mouseleave', () => {
+          cell.classList.remove('hoverCell');
+        });
+        if (cell.textContent === 'hit') {
+          cell.classList.add('cellShipHitted');
+        } else if (cell.textContent === 'noHit') {
+          cell.classList.add('cellMiss');
+        }
       } else {
         playerBoard.appendChild(cell);
         cell.classList.remove('cellHittable');
-        cell.classList.add('cellFrendly');
+        cell.classList.add('cellFriendly');
+        if (cell.textContent.match(/^[0-9]+$/) !== null) {
+          cell.classList.add('cellShip');
+        } else if (cell.textContent === 'hit') {
+          cell.classList.add('cellShipHitted');
+        } else if (cell.textContent === 'noHit') {
+          cell.classList.add('cellMiss');
+        }
       }
     }
   };
@@ -183,6 +203,7 @@ const placeShipsBoard = (playerGameBoard, enemyGameBoard, length) => {
 // funcion swap position
 const change = document.querySelector('#change');
 change.addEventListener('click', changeposition);
+// footerGitHub
 const github = document.querySelector('#github');
 github.addEventListener('click', () => {
   window.open('https://github.com/SebasDrewes/', '_blank');
