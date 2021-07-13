@@ -21,7 +21,11 @@ body {
     cursor:default;
 }
 #titleWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color:rgba(0, 0, 0, 0.5);
+    height: 20vh;
     border-bottom-left-radius:40%;
     border-bottom-right-radius: 40%;
     border-bottom: solid 1px rgba(255, 255, 255, 0.5);
@@ -36,6 +40,7 @@ body {
 }
 #text{
     font-family: 'Big Shoulders Text';
+    width: auto;
     font-weight: 100;
     font-size: 2.5em;
     margin: 0;
@@ -66,7 +71,7 @@ body {
     justify-content: center;
     height: auto;
 }
-#radarFlexbox {
+.radarFlexbox {
     display: flex;
     align-content: center;
     justify-content: space-around;
@@ -98,6 +103,13 @@ body {
     border-bottom: solid 1px rgba(255, 255, 255, 0.5);
     border-radius: 1em;
 
+}
+#enemyRadarMobile {
+    display: none;
+    width: 50vw;
+    background-color:rgba(0, 0, 0, 0.5);
+    border-bottom: solid 1px rgba(255, 255, 255, 0.5);
+    border-radius: 1em;
 }
 #playerBoard {
     display: grid;
@@ -240,4 +252,57 @@ body {
 
 #github:hover {
     opacity: 0.5;
+}
+@media only screen and (max-width: 1050px) {
+    #title {
+        font-size: 4em;
+    }
+    #text{
+        font-size: 2em;
+    }
+    #change {
+        font-size: 1em;
+    }
+    .radar {
+        font-size: 1em;
+    }
+    #footerText {
+        font-size: 1em;
+    }
+    #github {
+        height: 1.4em;
+    }
+    
+    #playerBoard {
+        width: 70vw;
+    }
+    #enemyBoard {
+        width: 70vw;
+    }
+    .radarFlexbox {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    
+    }
+    #container {
+        flex-direction:column-reverse;
+}
+    #enemyRadar {
+        width: 50vw;
+}
+@media only screen and (max-width: 500px) {
+    #text{
+        font-size: 1.5em;
+    }
+    #change {
+        font-size: 1em;
+    }
+    #playerBoard {
+        width: 100vw;
+    }
+    #enemyBoard {
+        width: 100vw;
+    }
 }

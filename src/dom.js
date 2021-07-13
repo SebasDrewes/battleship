@@ -5,6 +5,7 @@ const playerBoard = document.querySelector('#playerBoard');
 const enemyBoard = document.querySelector('#enemyBoard');
 const tuRadar = document.querySelector('#tuRadar');
 const enemyRadar = document.querySelector('#enemyRadar');
+const enemyRadarMobile = document.querySelector('#enemyRadarMobile');
 const text = document.querySelector('#text');
 const change = document.querySelector('#change');
 const title = document.querySelector('#title');
@@ -14,80 +15,79 @@ function findCommonElements(arr1, arr2) {
 }
 
 const displayBoards = (playerGameBoard, enemyGameBoard) => {
-  if (enemyGameBoard.allShipsSunked()) {
-    console.log('ganaste*placeholder*');
-  } else if (playerGameBoard.allShipsSunked()) {
-    console.log('perdiste*placeholder*');
-  } else {
-    change.style.display = 'none';
-    enemyBoard.style.display = 'grid';
-    while (playerBoard.firstChild) {
-      playerBoard.removeChild(playerBoard.firstChild);
-    }
-    while (enemyBoard.firstChild) {
-      enemyBoard.removeChild(enemyBoard.firstChild);
-    }
-    const createCell = (value, index, enableClick) => {
-      const invalidIndexArray = [10, 21, 32, 43, 54, 65, 76, 87, 98, 109];
-      const cell = document.createElement('div');
-      cell.textContent = value;
-      cell.classList.add('cellHittable');
-      cell.classList.add('cellHidden');
-      cell.setAttribute('data', [index]);
-      if (invalidIndexArray.includes(index) === false) {
+  change.style.display = 'none';
+  enemyBoard.style.display = 'grid';
+  while (playerBoard.firstChild) {
+    playerBoard.removeChild(playerBoard.firstChild);
+  }
+  while (enemyBoard.firstChild) {
+    enemyBoard.removeChild(enemyBoard.firstChild);
+  }
+  const createCell = (value, index, enableClick) => {
+    const invalidIndexArray = [10, 21, 32, 43, 54, 65, 76, 87, 98, 109];
+    const cell = document.createElement('div');
+    cell.textContent = value;
+    cell.classList.add('cellHittable');
+    cell.classList.add('cellHidden');
+    cell.setAttribute('data', [index]);
+    if (invalidIndexArray.includes(index) === false) {
       // si la celda es valida, se borra hidden
       // y se agrega eventListener
-        cell.classList.remove('cellHidden');
-        if (enableClick) {
-          enemyBoard.appendChild(cell);
-          cell.addEventListener('click', () => {
-            playerTurn(playerGameBoard, enemyGameBoard, index);
-            displayBoards(playerGameBoard, enemyGameBoard);
-            if (cell.textContent.match(/^[0-9]+$/) !== null) {
-              for (let i = 0; i < enemyGameBoard.shipList.length; i += 1) {
-                if (cell.textContent === enemyGameBoard.shipList[i].shipNumber.toString()
-              && enemyGameBoard.shipList[i].isSunk() === true) {
-                  title.textContent = '¡Hundiste un barco enemigo!';
-                  break;
-                } else {
-                  title.textContent = '¡Le diste a un barco enemigo!';
-                }
-              }
-            } else if (cell.textContent === '') {
-              title.textContent = '¡Fallaste el tiro!';
-            }
-          });
-          cell.addEventListener('mouseover', () => {
-            cell.classList.add('hoverCell');
-          });
-          cell.addEventListener('mouseleave', () => {
-            cell.classList.remove('hoverCell');
-          });
-          if (cell.textContent === 'hit') {
-            cell.classList.add('cellShipHitted');
-          } else if (cell.textContent === 'noHit') {
-            cell.classList.add('cellMiss');
-          }
-        } else {
-          playerBoard.appendChild(cell);
-          cell.classList.remove('cellHittable');
-          cell.classList.add('cellFriendly');
+      cell.classList.remove('cellHidden');
+      if (enableClick) {
+        enemyBoard.appendChild(cell);
+        cell.addEventListener('click', () => {
+          playerTurn(playerGameBoard, enemyGameBoard, index);
+          displayBoards(playerGameBoard, enemyGameBoard);
           if (cell.textContent.match(/^[0-9]+$/) !== null) {
-            cell.classList.add('cellShip');
-          } else if (cell.textContent === 'hit') {
-            cell.classList.add('cellShipHittedFriendly');
-          } else if (cell.textContent === 'noHit') {
-            cell.classList.add('cellMissFriendly');
+            for (let i = 0; i < enemyGameBoard.shipList.length; i += 1) {
+              if (cell.textContent === enemyGameBoard.shipList[i].shipNumber.toString()
+              && enemyGameBoard.shipList[i].isSunk() === true) {
+                title.textContent = '¡Hundiste un barco enemigo!';
+                break;
+              } else {
+                title.textContent = '¡Le diste a un barco enemigo!';
+              }
+            }
+          } else if (cell.textContent === '') {
+            title.textContent = '¡Fallaste el tiro!';
           }
+          if (enemyGameBoard.allShipsSunked()) {
+            console.log('ganaste*placeholder*');
+          } else if (playerGameBoard.allShipsSunked()) {
+            console.log('perdiste*placeholder*');
+          }
+        });
+        cell.addEventListener('mouseover', () => {
+          cell.classList.add('hoverCell');
+        });
+        cell.addEventListener('mouseleave', () => {
+          cell.classList.remove('hoverCell');
+        });
+        if (cell.textContent === 'hit') {
+          cell.classList.add('cellShipHitted');
+        } else if (cell.textContent === 'noHit') {
+          cell.classList.add('cellMiss');
+        }
+      } else {
+        playerBoard.appendChild(cell);
+        cell.classList.remove('cellHittable');
+        cell.classList.add('cellFriendly');
+        if (cell.textContent.match(/^[0-9]+$/) !== null) {
+          cell.classList.add('cellShip');
+        } else if (cell.textContent === 'hit') {
+          cell.classList.add('cellShipHittedFriendly');
+        } else if (cell.textContent === 'noHit') {
+          cell.classList.add('cellMissFriendly');
         }
       }
-    };
-    for (let i = 0; i < playerGameBoard.gameBoard.length; i += 1) {
-      createCell(playerGameBoard.gameBoard[i], i, false);
     }
-    for (let i = 0; i < enemyGameBoard.gameBoard.length; i += 1) {
-      createCell(enemyGameBoard.gameBoard[i], i, true);
-    }
+  };
+  for (let i = 0; i < playerGameBoard.gameBoard.length; i += 1) {
+    createCell(playerGameBoard.gameBoard[i], i, false);
+  }
+  for (let i = 0; i < enemyGameBoard.gameBoard.length; i += 1) {
+    createCell(enemyGameBoard.gameBoard[i], i, true);
   }
 };
 
@@ -101,6 +101,17 @@ const changeposition = () => {
     position = 'horizontal';
   }
 };
+const mediaFunction = (windowMedia) => {
+  if (windowMedia.matches) { // If media query matches
+    enemyRadarMobile.style.display = 'block';
+    title.style.fontSize = '2.5em';
+    tuRadar.style.display = 'block';
+  } else {
+    tuRadar.style.display = 'block';
+    enemyRadar.style.display = 'block';
+  }
+};
+const windowMedia = window.matchMedia('(max-width: 1050px)');
 const placeShipsBoard = (playerGameBoard, enemyGameBoard, length) => {
   // si existen, se borran todas las celdas
   while (playerBoard.firstChild) {
@@ -141,8 +152,8 @@ const placeShipsBoard = (playerGameBoard, enemyGameBoard, length) => {
             displayBoards(playerGameBoard, enemyGameBoard);
             title.textContent = 'Esperando instrucciones...';
             text.style.display = 'none';
-            tuRadar.style.display = 'block';
-            enemyRadar.style.display = 'block';
+            mediaFunction(windowMedia);
+            windowMedia.addEventListener(mediaFunction);
             break;
           default:
             placeShipsBoard(playerGameBoard, enemyGameBoard, 4);

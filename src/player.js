@@ -15,6 +15,7 @@ const playerTurn = (playerGameBoard, enemyGameBoard, index) => {
     const randomIndex = validArray[Math.floor(Math.random() * validArray.length)];
 
     playerGameBoard.receiveAttack(randomIndex);
+    console.log(playerGameBoard.gameBoard);
   }
 };
 export default {
