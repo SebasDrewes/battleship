@@ -38,6 +38,16 @@ const displayBoards = (playerGameBoard, enemyGameBoard) => {
       if (enableClick) {
         enemyBoard.appendChild(cell);
         // funciones eventListeners
+        const hoverCell = () => {
+          cell.classList.add('hoverCell');
+        };
+        const leaveCell = () => {
+          cell.classList.remove('hoverCell');
+        };
+        // eventlisteners
+        cell.addEventListener('mouseover', hoverCell);
+        cell.addEventListener('mouseleave', leaveCell);
+
         const clickCell = () => {
           playerTurn(playerGameBoard, enemyGameBoard, index);
           displayBoards(playerGameBoard, enemyGameBoard);
@@ -56,21 +66,18 @@ const displayBoards = (playerGameBoard, enemyGameBoard) => {
           }
           if (enemyGameBoard.allShipsSunked()) {
             title.textContent = 'Ganaste!!!';
+            cell.removeEventListener('click', clickCell);
+            cell.removeEventListener('mouseover', hoverCell);
+            cell.removeEventListener('mouseleave', leaveCell);
           } else if (playerGameBoard.allShipsSunked()) {
             title.textContent = 'Perdiste!';
+            cell.removeEventListener('click', clickCell);
+            cell.removeEventListener('mouseover', hoverCell);
+            cell.removeEventListener('mouseleave', leaveCell);
           }
         };
-        const hoverCell = () => {
-          cell.classList.add('hoverCell');
-        };
-        const leaveCell = () => {
-          cell.classList.remove('hoverCell');
-        };
-        // eventlisteners
+        // eventlistener click
         cell.addEventListener('click', clickCell);
-        cell.addEventListener('mouseover', hoverCell);
-        cell.addEventListener('mouseleave', leaveCell);
-
         if (cell.textContent === 'hit') {
           cell.classList.add('cellShipHitted');
         } else if (cell.textContent === 'noHit') {
