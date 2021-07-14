@@ -15,6 +15,7 @@ const newGame = document.querySelector('#newGame');
 function findCommonElements(arr1, arr2) {
   return arr1.some((item) => arr2.includes(item));
 }
+
 const displayBoards = (playerGameBoard, enemyGameBoard) => {
   change.style.display = 'none';
   enemyBoard.style.display = 'grid';
@@ -37,18 +38,7 @@ const displayBoards = (playerGameBoard, enemyGameBoard) => {
       cell.classList.remove('cellHidden');
       if (enableClick) {
         enemyBoard.appendChild(cell);
-        // funciones eventListeners
-        const hoverCell = () => {
-          cell.classList.add('hoverCell');
-        };
-        const leaveCell = () => {
-          cell.classList.remove('hoverCell');
-        };
-        // eventlisteners
-        cell.addEventListener('mouseover', hoverCell);
-        cell.addEventListener('mouseleave', leaveCell);
-
-        const clickCell = () => {
+        cell.addEventListener('click', () => {
           playerTurn(playerGameBoard, enemyGameBoard, index);
           displayBoards(playerGameBoard, enemyGameBoard);
           if (cell.textContent.match(/^[0-9]+$/) !== null) {
@@ -66,18 +56,16 @@ const displayBoards = (playerGameBoard, enemyGameBoard) => {
           }
           if (enemyGameBoard.allShipsSunked()) {
             title.textContent = 'Ganaste!!!';
-            cell.removeEventListener('click', clickCell);
-            cell.removeEventListener('mouseover', hoverCell);
-            cell.removeEventListener('mouseleave', leaveCell);
           } else if (playerGameBoard.allShipsSunked()) {
             title.textContent = 'Perdiste!';
-            cell.removeEventListener('click', clickCell);
-            cell.removeEventListener('mouseover', hoverCell);
-            cell.removeEventListener('mouseleave', leaveCell);
           }
-        };
-        // eventlistener click
-        cell.addEventListener('click', clickCell);
+        });
+        cell.addEventListener('mouseover', () => {
+          cell.classList.add('hoverCell');
+        });
+        cell.addEventListener('mouseleave', () => {
+          cell.classList.remove('hoverCell');
+        });
         if (cell.textContent === 'hit') {
           cell.classList.add('cellShipHitted');
         } else if (cell.textContent === 'noHit') {
