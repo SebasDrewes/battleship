@@ -15,7 +15,6 @@ const newGame = document.querySelector('#newGame');
 function findCommonElements(arr1, arr2) {
   return arr1.some((item) => arr2.includes(item));
 }
-
 const displayBoards = (playerGameBoard, enemyGameBoard) => {
   change.style.display = 'none';
   enemyBoard.style.display = 'grid';
@@ -38,7 +37,8 @@ const displayBoards = (playerGameBoard, enemyGameBoard) => {
       cell.classList.remove('cellHidden');
       if (enableClick) {
         enemyBoard.appendChild(cell);
-        cell.addEventListener('click', () => {
+        // funciones eventListeners
+        const clickCell = () => {
           playerTurn(playerGameBoard, enemyGameBoard, index);
           displayBoards(playerGameBoard, enemyGameBoard);
           if (cell.textContent.match(/^[0-9]+$/) !== null) {
@@ -55,17 +55,22 @@ const displayBoards = (playerGameBoard, enemyGameBoard) => {
             title.textContent = '¡Fallaste el tiro!';
           }
           if (enemyGameBoard.allShipsSunked()) {
-            console.log('ganaste*placeholder*');
+            title.textContent = 'Ganaste!!!';
           } else if (playerGameBoard.allShipsSunked()) {
-            console.log('perdiste*placeholder*');
+            title.textContent = 'Perdiste!';
           }
-        });
-        cell.addEventListener('mouseover', () => {
+        };
+        const hoverCell = () => {
           cell.classList.add('hoverCell');
-        });
-        cell.addEventListener('mouseleave', () => {
+        };
+        const leaveCell = () => {
           cell.classList.remove('hoverCell');
-        });
+        };
+        // eventlisteners
+        cell.addEventListener('click', clickCell);
+        cell.addEventListener('mouseover', hoverCell);
+        cell.addEventListener('mouseleave', leaveCell);
+
         if (cell.textContent === 'hit') {
           cell.classList.add('cellShipHitted');
         } else if (cell.textContent === 'noHit') {

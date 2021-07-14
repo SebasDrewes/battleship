@@ -135,7 +135,7 @@ const GameBoard = () => {
       case 5:
         placeShip(78, 5, 'horizontal');
         placeShip(34, 4, 'horizontal');
-        placeShip(47, 3, 'horizontal');
+        placeShip(50, 3, 'horizontal');
         placeShip(15, 3, 'horizontal');
         placeShip(95, 2, 'horizontal');
         break;

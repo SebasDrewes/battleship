@@ -1,10 +1,9 @@
 /* eslint-disable no-restricted-globals */
 
-// lista de variables que guardan hasta 4 movimientos de la pc hacia atras
+// lista de variables que guardan hasta 3 movimientos de la pc hacia atras
 let lastIndex = ''; // last Index
 let penultimateIndex = ''; // index anterior al last
 let antepenultimateIndex = ''; // index anterior al anterior del last
-let preantepenultimateIndex = ''; // index anterior al anterior del anterior del last
 const playerTurn = (playerGameBoard, enemyGameBoard, index) => {
   function compareElements(arr1, item) {
     return arr1.some((number) => item === number);
@@ -86,7 +85,6 @@ const playerTurn = (playerGameBoard, enemyGameBoard, index) => {
       }
     } else if (playerGameBoard.gameBoard[antepenultimateIndex] === 'hit' && playerGameBoard.gameBoard[lastIndex] === 'noHit') {
       validArray = [];
-      preantepenultimateIndex = antepenultimateIndex;
       if ((playerGameBoard.gameBoard[antepenultimateIndex - 1] === '' || !(isNaN(playerGameBoard.gameBoard[antepenultimateIndex - 1])))
         && compareElements(invalidIndexArray,
           playerGameBoard.gameBoard[antepenultimateIndex - 1]) === false) {
@@ -107,37 +105,6 @@ const playerTurn = (playerGameBoard, enemyGameBoard, index) => {
         && compareElements(invalidIndexArray,
           playerGameBoard.gameBoard[antepenultimateIndex - 11]) === false) {
         validArray.push(antepenultimateIndex - 11);
-      }
-      if (!validArray[0]) {
-        for (let i = 0; i < playerGameBoard.gameBoard.length; i += 1) {
-          if (playerGameBoard.gameBoard[i] !== 'hit' && playerGameBoard.gameBoard[i] !== 'noHit'
-              && compareElements(invalidIndexArray, playerGameBoard.gameBoard[i]) === false) {
-            validArray.push(i);
-          }
-        }
-      }
-    } else if (playerGameBoard.gameBoard[preantepenultimateIndex] === 'hit' && playerGameBoard.gameBoard[lastIndex] === 'noHit') {
-      validArray = [];
-      if ((playerGameBoard.gameBoard[preantepenultimateIndex - 1] === '' || !(isNaN(playerGameBoard.gameBoard[preantepenultimateIndex - 1])))
-        && compareElements(invalidIndexArray,
-          playerGameBoard.gameBoard[preantepenultimateIndex - 1]) === false) {
-        validArray.push(preantepenultimateIndex - 1);
-      }
-      if ((playerGameBoard.gameBoard[preantepenultimateIndex + 1] === '' || !(isNaN(playerGameBoard.gameBoard[preantepenultimateIndex + 1])))
-        && compareElements(invalidIndexArray,
-          playerGameBoard.gameBoard[preantepenultimateIndex + 1]) === false) {
-        validArray.push(preantepenultimateIndex + 1);
-      }
-
-      if ((playerGameBoard.gameBoard[preantepenultimateIndex + 11] === '' || !(isNaN(playerGameBoard.gameBoard[preantepenultimateIndex + 11])))
-        && compareElements(invalidIndexArray,
-          playerGameBoard.gameBoard[preantepenultimateIndex + 11]) === false) {
-        validArray.push(preantepenultimateIndex + 11);
-      }
-      if ((playerGameBoard.gameBoard[preantepenultimateIndex - 11] === '' || !(isNaN(playerGameBoard.gameBoard[preantepenultimateIndex - 11])))
-        && compareElements(invalidIndexArray,
-          playerGameBoard.gameBoard[preantepenultimateIndex - 11]) === false) {
-        validArray.push(preantepenultimateIndex - 11);
       }
       if (!validArray[0]) {
         for (let i = 0; i < playerGameBoard.gameBoard.length; i += 1) {
