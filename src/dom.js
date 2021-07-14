@@ -249,7 +249,7 @@ github.addEventListener('click', () => {
 
 newGame.addEventListener('click', () => {
   puertaCorrediza.style.width = '0%';
-  newGame.style.opacity = '0';
+  newGame.style.fontSize = '0';
 });
 export default {
   displayBoards, placeShipsBoard,
