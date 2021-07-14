@@ -7,10 +7,10 @@ const { GameBoard } = gameBoardModule;
 const playerGameBoard = GameBoard();
 const enemyGameBoard = GameBoard();
 
-enemyGameBoard.placeShip(0, 5, 'horizontal');
+enemyGameBoard.placeShipsRandomly();/*
 enemyGameBoard.placeShip(44, 3, 'vertical');
 enemyGameBoard.placeShip(7, 3, 'horizontal');
 enemyGameBoard.placeShip(36, 3, 'vertical');
-enemyGameBoard.placeShip(96, 2, 'horizontal');
+enemyGameBoard.placeShip(96, 2, 'horizontal'); */
 
 placeShipsBoard(playerGameBoard, enemyGameBoard, 5);

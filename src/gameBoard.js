@@ -51,7 +51,6 @@ const GameBoard = () => {
           }
           newShip.shipNumber = index;
         }
-        console.log(shipList);
       }
     } else if (position === 'vertical') {
       // si la position es vertical, la cuenta del for loop es diferente
@@ -100,8 +99,56 @@ const GameBoard = () => {
     }
     return false;
   };
+  const placeShipsRandomly = () => {
+    // selecciona numero aleatorio entre 1 y 5
+    const randomBoard = Math.floor(Math.random() * (5 - 1 + 1) + 1);
+    // elije entre diferentes gameboards posibles
+    switch (randomBoard) {
+      case 1:
+        placeShip(0, 5, 'horizontal');
+        placeShip(44, 4, 'vertical');
+        placeShip(7, 3, 'horizontal');
+        placeShip(36, 3, 'vertical');
+        placeShip(96, 2, 'horizontal');
+        break;
+      case 2:
+        placeShip(0, 5, 'vertical');
+        placeShip(47, 4, 'vertical');
+        placeShip(17, 3, 'horizontal');
+        placeShip(74, 3, 'vertical');
+        placeShip(93, 2, 'horizontal');
+        break;
+      case 3:
+        placeShip(27, 5, 'horizontal');
+        placeShip(58, 4, 'vertical');
+        placeShip(12, 3, 'horizontal');
+        placeShip(83, 3, 'horizontal');
+        placeShip(99, 2, 'horizontal');
+        break;
+      case 4:
+        placeShip(16, 5, 'vertical');
+        placeShip(56, 4, 'vertical');
+        placeShip(52, 3, 'vertical');
+        placeShip(12, 3, 'vertical');
+        placeShip(8, 2, 'vertical');
+        break;
+      case 5:
+        placeShip(78, 5, 'horizontal');
+        placeShip(34, 4, 'horizontal');
+        placeShip(47, 3, 'horizontal');
+        placeShip(15, 3, 'horizontal');
+        placeShip(95, 2, 'horizontal');
+        break;
+      default:
+        placeShip(0, 5, 'horizontal');
+        placeShip(44, 4, 'vertical');
+        placeShip(7, 3, 'horizontal');
+        placeShip(36, 3, 'vertical');
+        placeShip(96, 2, 'horizontal');
+    }
+  };
   return {
-    placeShip, receiveAttack, gameBoard, shipList, allShipsSunked,
+    placeShip, receiveAttack, gameBoard, shipList, allShipsSunked, placeShipsRandomly,
   };
 };
 
