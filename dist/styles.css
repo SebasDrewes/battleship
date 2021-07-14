@@ -265,8 +265,8 @@ body {
     width: 100%;
     opacity: 1;
     transition: width 2s cubic-bezier(0.6, -0.28, 0.74, 0.05);
-    border-top-right-radius: 5em;
-    border-bottom-right-radius: 5em;
+    border-top-right-radius: 3em;
+    border-bottom-right-radius: 3em;
 }
 #newGame {
     font-family: 'Big Shoulders Stencil Text';
