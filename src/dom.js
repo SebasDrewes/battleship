@@ -9,6 +9,8 @@ const enemyRadarMobile = document.querySelector('#enemyRadarMobile');
 const text = document.querySelector('#text');
 const change = document.querySelector('#change');
 const title = document.querySelector('#title');
+const puertaCorrediza = document.querySelector('#puertaCorrediza');
+const newGame = document.querySelector('#newGame');
 // funcion para comprar newIndexs con indexInvalidos
 function findCommonElements(arr1, arr2) {
   return arr1.some((item) => arr2.includes(item));
@@ -243,6 +245,11 @@ change.addEventListener('click', changeposition);
 const github = document.querySelector('#github');
 github.addEventListener('click', () => {
   window.open('https://github.com/SebasDrewes/', '_blank');
+});
+
+newGame.addEventListener('click', () => {
+  puertaCorrediza.style.width = '0%';
+  newGame.style.opacity = '0';
 });
 export default {
   displayBoards, placeShipsBoard,
