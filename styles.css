@@ -342,9 +342,9 @@ body {
         font-size: 1em;
     }
     #playerBoard {
-        width: 100vw;
+        width: 100%;
     }
     #enemyBoard {
-        width: 100vw;
+        width: 100%;
     }
 }
