@@ -11,6 +11,7 @@ const change = document.querySelector('#change');
 const title = document.querySelector('#title');
 const puertaCorrediza = document.querySelector('#puertaCorrediza');
 const newGame = document.querySelector('#newGame');
+const winWrap = document.querySelector('#winWrap');
 // funcion para comprar newIndexs con indexInvalidos
 function findCommonElements(arr1, arr2) {
   return arr1.some((item) => arr2.includes(item));
@@ -56,8 +57,25 @@ const displayBoards = (playerGameBoard, enemyGameBoard) => {
           }
           if (enemyGameBoard.allShipsSunked()) {
             title.textContent = 'Ganaste!!!';
+            winWrap.style.display = 'block';
+            setTimeout(() => {
+              puertaCorrediza.style.width = '100%';
+              title.textContent = 'Batalla Naval';
+            }, 5000);
+            setTimeout(() => {
+              newGame.style.display = 'block';
+              window.location.reload();
+            }, 6000);
           } else if (playerGameBoard.allShipsSunked()) {
             title.textContent = 'Perdiste!';
+            winWrap.style.display = 'block';
+            setTimeout(() => {
+              puertaCorrediza.style.width = '100%';
+              title.textContent = 'Batalla Naval';
+            }, 5000);
+            setTimeout(() => {
+              window.location.reload();
+            }, 6000);
           }
         });
         cell.addEventListener('mouseover', () => {
@@ -249,7 +267,7 @@ github.addEventListener('click', () => {
 
 newGame.addEventListener('click', () => {
   puertaCorrediza.style.width = '0%';
-  newGame.style.fontSize = '0';
+  newGame.style.display = 'none';
 });
 export default {
   displayBoards, placeShipsBoard,

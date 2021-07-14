@@ -277,6 +277,14 @@ body {
     border-top-right-radius: 1em;
     border-bottom-right-radius: 1em;
 }
+#winWrap {
+    display: none;
+    position: absolute;
+    background: transparent;
+    top: 15vh;
+    height: 78vh;
+    width: 100%;
+}
 #newGame {
     font-family: 'Big Shoulders Stencil Text';
     font-size: 10em;
@@ -284,6 +292,7 @@ body {
     cursor: pointer;
     text-decoration: underline;
     opacity: 1;
+    transition: width 0.1s ease-in;
     animation: blinker 3s ease-in-out infinite;
 }
 @media only screen and (max-width: 1050px) {
