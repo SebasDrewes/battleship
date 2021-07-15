@@ -12,6 +12,33 @@ const title = document.querySelector('#title');
 const puertaCorrediza = document.querySelector('#puertaCorrediza');
 const newGame = document.querySelector('#newGame');
 const winWrap = document.querySelector('#winWrap');
+const mediaFunction = (windowMedia) => {
+  if (windowMedia.matches) { // If media query matches
+    enemyRadarMobile.style.display = 'block';
+    title.style.fontSize = '2.5em';
+    tuRadar.style.display = 'block';
+  } else {
+    tuRadar.style.display = 'block';
+    enemyRadar.style.display = 'block';
+  }
+};
+const mediaFunctionWin = (windowMedia) => {
+  if (windowMedia.matches) { // If media query matches
+    setTimeout(() => {
+      window.location.reload();
+    }, 6000);
+  } else {
+    setTimeout(() => {
+      puertaCorrediza.style.width = '100%';
+      title.textContent = 'Batalla Naval';
+    }, 5000);
+    setTimeout(() => {
+      window.location.reload();
+    }, 6000);
+  }
+};
+
+const windowMedia = window.matchMedia('(max-width: 1050px)');
 // funcion para comprar newIndexs con indexInvalidos
 function findCommonElements(arr1, arr2) {
   return arr1.some((item) => arr2.includes(item));
@@ -58,24 +85,11 @@ const displayBoards = (playerGameBoard, enemyGameBoard) => {
           if (enemyGameBoard.allShipsSunked()) {
             title.textContent = 'Ganaste!!!';
             winWrap.style.display = 'block';
-            setTimeout(() => {
-              puertaCorrediza.style.width = '100%';
-              title.textContent = 'Batalla Naval';
-            }, 5000);
-            setTimeout(() => {
-              newGame.style.display = 'block';
-              window.location.reload();
-            }, 6000);
+            mediaFunctionWin(windowMedia);
           } else if (playerGameBoard.allShipsSunked()) {
             title.textContent = 'Perdiste!';
             winWrap.style.display = 'block';
-            setTimeout(() => {
-              puertaCorrediza.style.width = '100%';
-              title.textContent = 'Batalla Naval';
-            }, 5000);
-            setTimeout(() => {
-              window.location.reload();
-            }, 6000);
+            mediaFunctionWin(windowMedia);
           }
         });
         cell.addEventListener('mouseover', () => {
@@ -121,17 +135,6 @@ const changeposition = () => {
     position = 'horizontal';
   }
 };
-const mediaFunction = (windowMedia) => {
-  if (windowMedia.matches) { // If media query matches
-    enemyRadarMobile.style.display = 'block';
-    title.style.fontSize = '2.5em';
-    tuRadar.style.display = 'block';
-  } else {
-    tuRadar.style.display = 'block';
-    enemyRadar.style.display = 'block';
-  }
-};
-const windowMedia = window.matchMedia('(max-width: 1050px)');
 const placeShipsBoard = (playerGameBoard, enemyGameBoard, length) => {
   // si existen, se borran todas las celdas
   while (playerBoard.firstChild) {
