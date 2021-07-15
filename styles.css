@@ -294,6 +294,7 @@ body {
     opacity: 1;
     transition: width 0.1s ease-in;
     animation: blinker 3s ease-in-out infinite;
+    text-align: center;
 }
 @media only screen and (max-width: 1050px) {
     #title {
@@ -334,6 +335,7 @@ body {
     #enemyRadar {
         width: 50vw;
 }
+}
 @media only screen and (max-width: 500px) {
     #text{
         font-size: 1.5em;
@@ -342,9 +344,12 @@ body {
         font-size: 1em;
     }
     #playerBoard {
-        width: 100%;
+        width: 95vw ;
     }
     #enemyBoard {
-        width: 100%;
+        width: 95vw ;
+    }
+    #newGame {
+        font-size: 8em;
     }
 }
