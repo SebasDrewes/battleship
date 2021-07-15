@@ -51,6 +51,34 @@ const playerTurn = (playerGameBoard, enemyGameBoard, index) => {
           }
         }
       }
+    } else if ((playerGameBoard.gameBoard[penultimateIndex] === 'hit' && playerGameBoard.gameBoard[lastIndex] === 'hit')) {
+      validArray = [];
+      antepenultimateIndex = penultimateIndex;
+      const direction = penultimateIndex - lastIndex;
+      penultimateIndex = lastIndex;
+      if (direction === 11) {
+        if ((playerGameBoard.gameBoard[lastIndex - 11] === '' || !(isNaN(playerGameBoard.gameBoard[lastIndex - 11])))
+              && compareElements(invalidIndexArray,
+                playerGameBoard.gameBoard[lastIndex - 11]) === false) {
+          validArray.push(lastIndex - 11);
+        }
+        if ((playerGameBoard.gameBoard[lastIndex + 11] === '' || !(isNaN(playerGameBoard.gameBoard[lastIndex + 11])))
+              && compareElements(invalidIndexArray,
+                playerGameBoard.gameBoard[lastIndex + 11]) === false) {
+          validArray.push(lastIndex + 11);
+        }
+      } else if (direction === 1) {
+        if ((playerGameBoard.gameBoard[lastIndex - 1] === '' || !(isNaN(playerGameBoard.gameBoard[lastIndex - 1])))
+                && compareElements(invalidIndexArray,
+                  playerGameBoard.gameBoard[lastIndex - 1]) === false) {
+          validArray.push(lastIndex - 1);
+        }
+        if ((playerGameBoard.gameBoard[lastIndex + 1] === '' || !(isNaN(playerGameBoard.gameBoard[lastIndex + 1])))
+                && compareElements(invalidIndexArray,
+                  playerGameBoard.gameBoard[lastIndex + 1]) === false) {
+          validArray.push(lastIndex + 1);
+        }
+      }
     } else if (playerGameBoard.gameBoard[penultimateIndex] === 'hit' && playerGameBoard.gameBoard[lastIndex] === 'noHit') {
       validArray = [];
       antepenultimateIndex = penultimateIndex;
