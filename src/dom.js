@@ -178,7 +178,7 @@ const placeShipsBoard = (playerGameBoard, enemyGameBoard, length) => {
             mediaFunction(windowMedia);
             break;
           default:
-            placeShipsBoard(playerGameBoard, enemyGameBoard, 4);
+            placeShipsBoard(playerGameBoard, enemyGameBoard, 5);
         }
         // se agregan indexs usados al array de invalid
         for (let i = index; i < index + length; i += 1) {

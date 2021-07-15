@@ -13,7 +13,7 @@ test('placing vertical ship', () => {
   expect(Object.keys(medium.hitPoints).length).toBe(2);
   expect(medium.shipLength).toBe(2);
   expect(medium.hitPoints[9]).toBe('noHit');
-  expect(medium.hitPoints[19]).toBe('noHit');
+  expect(medium.hitPoints[20]).toBe('noHit');
 });
 test('testing hitted target', () => {
   const small = shipFactory(10, 5, 'horizontal');
@@ -23,17 +23,17 @@ test('testing hitted target', () => {
   expect(small.isSunk()).toBe(false);
 });
 test('testing hitted target vertical', () => {
-  const medium = shipFactory(10, 5, 'vertical');
-  medium.hit(10);
-  medium.hit(20);
-  medium.hit(30);
-  medium.hit(40);
-  medium.hit(50);
-  expect(medium.hitPoints[10]).toBe('hit');
-  expect(medium.hitPoints[20]).toBe('hit');
-  expect(medium.hitPoints[30]).toBe('hit');
-  expect(medium.hitPoints[40]).toBe('hit');
-  expect(medium.hitPoints[50]).toBe('hit');
+  const medium = shipFactory(11, 5, 'vertical');
+  medium.hit(11);
+  medium.hit(22);
+  medium.hit(33);
+  medium.hit(44);
+  medium.hit(55);
+  expect(medium.hitPoints[11]).toBe('hit');
+  expect(medium.hitPoints[22]).toBe('hit');
+  expect(medium.hitPoints[33]).toBe('hit');
+  expect(medium.hitPoints[44]).toBe('hit');
+  expect(medium.hitPoints[55]).toBe('hit');
   expect(medium.isSunk()).toBe(true);
 });
 test('testing isSunk', () => {

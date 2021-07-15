@@ -13,10 +13,10 @@ test('test', () => {
   expect(newBoard.gameBoard[4]).toBe(0);
 
   expect(newBoard.gameBoard[5]).toBe(5);
-  expect(newBoard.gameBoard[15]).toBe(5);
-  expect(newBoard.gameBoard[25]).toBe(5);
-  expect(newBoard.gameBoard[35]).toBe(5);
-  expect(newBoard.gameBoard[45]).toBe(5);
+  expect(newBoard.gameBoard[16]).toBe(5);
+  expect(newBoard.gameBoard[27]).toBe(5);
+  expect(newBoard.gameBoard[38]).toBe(5);
+  expect(newBoard.gameBoard[49]).toBe(5);
 
   expect(newBoard.shipList[0].shipNumber).toBe(0);
   expect(newBoard.shipList[1].shipNumber).toBe(5);
@@ -39,5 +39,4 @@ test('test', () => {
   expect(newBoard.shipList[0].isSunk()).toBe(true);
   newBoard.receiveAttack(33);
   expect(newBoard.gameBoard[33]).toBe('noHit');
-  expect(newBoard.allShipsSunked()).toBe(true);
 });

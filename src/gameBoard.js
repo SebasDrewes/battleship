@@ -20,13 +20,13 @@ const GameBoard = () => {
   // cuando un index del gameBoard se ocupa, se agrega a invalidIndex
   // se agregan index numero 11, para inhabilitar posicionar barcos horizontal
   const invalidIndexArray = [10, 21, 32, 43, 54, 65, 76, 87, 98, 109];
+  function findCommonElements(arr1, arr2) {
+    return arr1.some((item) => arr2.includes(item));
+  }
   const placeShip = (index, length, position) => {
     // guarda los nuevos indexs seleccionados
     const newIndexArray = [];
     // si los nuevos indexs estan en los invalid, no ejecuta placeship
-    function findCommonElements(arr1, arr2) {
-      return arr1.some((item) => arr2.includes(item));
-    }
     // segun la posicion, se contabilizan indexes
     if (position === 'horizontal') {
       // se pushean los indexes del nuevo ship a newArray
@@ -103,6 +103,7 @@ const GameBoard = () => {
     // selecciona numero aleatorio entre 1 y 5
     const randomBoard = Math.floor(Math.random() * (5 - 1 + 1) + 1);
     // elije entre diferentes gameboards posibles
+
     switch (randomBoard) {
       case 1:
         placeShip(0, 5, 'horizontal');
