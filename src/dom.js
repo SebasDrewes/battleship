@@ -129,6 +129,7 @@ const displayBoards = (playerGameBoard, enemyGameBoard) => {
 // funcion para swap position
 let position = 'horizontal';
 const changeposition = () => {
+  change.id = 'changeClicked';
   if (position === 'horizontal') {
     position = 'vertical';
   } else {
