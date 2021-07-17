@@ -3,7 +3,7 @@
 
 La batalla naval desarrollada con TDD (Test Driven Development)
 
-El juego se desarrolla contra la pc.
+El juego  contra la pc.
 
 Haciendo uso de import/export, la app se encuentra modulizada en diferentes archivos y cada archivo fue testeado con **Jest**. 
 Minificado mediante **Webpack** y compilado con **Babel**.
