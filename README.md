@@ -3,7 +3,7 @@
 
 La batalla naval desarrollada con TDD (Test Driven Development)
 
-El juego  contra la pc.
+El jugador debe intentar hundir los barcos enemigos antes de que el IA hunda los del jugador.
 
 Haciendo uso de import/export, la app se encuentra modulizada en diferentes archivos y cada archivo fue testeado con **Jest**. 
 Minificado mediante **Webpack** y compilado con **Babel**.
