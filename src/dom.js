@@ -43,7 +43,7 @@ const windowMedia = window.matchMedia('(max-width: 1050px)');
 function findCommonElements(arr1, arr2) {
   return arr1.some((item) => arr2.includes(item));
 }
-
+//test
 const displayBoards = (playerGameBoard, enemyGameBoard) => {
   change.style.display = 'none';
   enemyBoard.style.display = 'grid';
